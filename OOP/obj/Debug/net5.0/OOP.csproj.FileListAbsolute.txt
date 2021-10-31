@@ -1,0 +1,17 @@
+D:\Codelearn\OOP\bin\Debug\net5.0\OOP.exe
+D:\Codelearn\OOP\bin\Debug\net5.0\OOP.deps.json
+D:\Codelearn\OOP\bin\Debug\net5.0\OOP.runtimeconfig.json
+D:\Codelearn\OOP\bin\Debug\net5.0\OOP.runtimeconfig.dev.json
+D:\Codelearn\OOP\bin\Debug\net5.0\OOP.dll
+D:\Codelearn\OOP\bin\Debug\net5.0\ref\OOP.dll
+D:\Codelearn\OOP\bin\Debug\net5.0\OOP.pdb
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.csproj.AssemblyReference.cache
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.GeneratedMSBuildEditorConfig.editorconfig
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.AssemblyInfoInputs.cache
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.AssemblyInfo.cs
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.csproj.CoreCompileInputs.cache
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.dll
+D:\Codelearn\OOP\obj\Debug\net5.0\ref\OOP.dll
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.pdb
+D:\Codelearn\OOP\obj\Debug\net5.0\OOP.genruntimeconfig.cache
+D:\Codelearn\OOP\bin\Debug\net5.0\AForge.Math.dll

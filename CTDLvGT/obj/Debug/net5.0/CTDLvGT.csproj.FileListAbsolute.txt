@@ -1,0 +1,16 @@
+D:\Codelearn\CTDLvGT\bin\Debug\net5.0\CTDLvGT.exe
+D:\Codelearn\CTDLvGT\bin\Debug\net5.0\CTDLvGT.deps.json
+D:\Codelearn\CTDLvGT\bin\Debug\net5.0\CTDLvGT.runtimeconfig.json
+D:\Codelearn\CTDLvGT\bin\Debug\net5.0\CTDLvGT.runtimeconfig.dev.json
+D:\Codelearn\CTDLvGT\bin\Debug\net5.0\CTDLvGT.dll
+D:\Codelearn\CTDLvGT\bin\Debug\net5.0\ref\CTDLvGT.dll
+D:\Codelearn\CTDLvGT\bin\Debug\net5.0\CTDLvGT.pdb
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.csproj.AssemblyReference.cache
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.GeneratedMSBuildEditorConfig.editorconfig
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.AssemblyInfoInputs.cache
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.AssemblyInfo.cs
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.csproj.CoreCompileInputs.cache
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.dll
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\ref\CTDLvGT.dll
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.pdb
+D:\Codelearn\CTDLvGT\obj\Debug\net5.0\CTDLvGT.genruntimeconfig.cache
