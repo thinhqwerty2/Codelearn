@@ -1,68 +1,115 @@
 using System.Text;
 using System;
+using System.Collections.Generic;
 namespace OOP
 {
   class Account
   {
-    int id;
-    string name;
-    int balance;
-    public Account(int id, string name)
+    int accountId;
+    string firstName;
+    string lastName;
+    double balance;
+    public Account()
     {
-      this.id = id;
-      this.name = name;
 
     }
-    public Account(int id, string name, int balance)
+    public Account(int id, string firstName, string lastName)
     {
-      this.id = id;
-      this.name = name;
+      this.accountId = id;
+      this.firstName = firstName;
+      this.lastName = lastName;
+
+    }
+    public Account(int id, string firstName, string lastName, int balance)
+    {
+      this.accountId = id;
+      this.lastName = lastName;
+      this.firstName = firstName;
       this.balance = balance;
 
     }
-    public int Id
+    public int AccountId
     {
       get
       {
-        return id;
+        return accountId;
       }
     }
-    public string Name
+    public string FirstName
     {
       set
       {
-        name = value;
+        firstName = value;
       }
       get
       {
-        return name;
+        return firstName;
+      }
+    }
+    public string LastName
+    {
+      set
+      {
+        lastName = value;
+      }
+      get
+      {
+        return lastName;
       }
     }
 
 
-    public int Balance
+    public double Balance
     {
+      set
+      {
+        balance = value;
+      }
       get
       {
         return balance;
       }
     }
-
-    public void deposit(int amount)
+    public void FillInfo()
     {
-      this.balance = this.balance + amount;
+      Console.WriteLine("--------------------------------------");
+      Console.WriteLine("Account ID: ");
+      accountId = int.Parse(Console.ReadLine());
+      Console.WriteLine("First Name: ");
+      firstName = Console.ReadLine();
+      Console.WriteLine("Last Name: ");
+      lastName = Console.ReadLine();
+      Console.WriteLine("Balance: ");
+      balance = double.Parse(Console.ReadLine());
+      Console.WriteLine("--------------------------------------");
     }
 
-    public void withdraw(int amount)
+
+
+
+    public void Querry()
     {
-      if (this.balance - amount > 0)
-        this.balance = this.balance - amount;
-      else System.Console.WriteLine("That amount exceeds your current balance.");
+      Console.WriteLine($"ID: {accountId}\nFirst Name: {firstName}\nLast Name: {lastName}\nBalance: {Balance}");
+    }
+  }
+  public class AccountList
+  {
+    List<Account> accounts = new List<Account>();
+    public void NewAccount()
+    {
+      Console.WriteLine("Amount of accounts: ");
+      int n = int.Parse(Console.ReadLine());
+      for (int i = 0; i < n; i++)
+      {
+        Account acc = new Account();
+        acc.FillInfo();
+        accounts.Add(acc);
+      }
+      foreach (Account acc in accounts)
+      {
+        acc.Querry();
+      }
     }
 
-    public void display()
-    {
-      Console.WriteLine($"ID: {Id}\nName: {Name}\nBalance: {Balance}");
-    }
   }
 }

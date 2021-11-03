@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 namespace OOP
 {
+
   public interface IBook
   {
     string this[int index]
@@ -14,7 +15,7 @@ namespace OOP
       get;
       set;
     }
-    string[] Authors
+    string Author
     {
       get;
       set;
@@ -67,28 +68,58 @@ namespace OOP
     }
     public string Title
     {
-      get;
-      set;
+      get
+      {
+        return title;
+      }
+      set
+      {
+        title = value;
+      }
     }
-    public string[] Authors
+    public string Author
     {
-      get;
-      set;
+      get
+      {
+        return author;
+      }
+      set
+      {
+        author = value;
+      }
     }
     public string Publisher
     {
-      get;
-      set;
+      get
+      {
+        return publisher;
+      }
+      set
+      {
+        publisher = value;
+      }
     }
     public int Year
     {
-      get;
-      set;
+      get
+      {
+        return year;
+      }
+      set
+      {
+        year = value;
+      }
     }
     public string ISBN
     {
-      get;
-      set;
+      get
+      {
+        return isbn;
+      }
+      set
+      {
+        isbn = value;
+      }
     }
     public void Show()
     {
@@ -128,7 +159,21 @@ namespace OOP
       } while (s.Length > 0);
 
     }
+    public static bool operator <(Book book1, Book book2)
+    {
+      if (book1.Title.CompareTo(book2.Title) < 0) return true;
+      else return false;
+    }
 
+    public static bool operator >(Book book1, Book book2)
+    {
+      if (book1.Title.CompareTo(book2.Title) > 0) return true;
+      else return false;
+    }
+    public int Compare(Book book1, Book book2)
+    {
+      return 1;
+    }
   }
   public class BookList
   {
@@ -156,5 +201,8 @@ namespace OOP
         n--;
       }
     }
+
+
+
   }
 }

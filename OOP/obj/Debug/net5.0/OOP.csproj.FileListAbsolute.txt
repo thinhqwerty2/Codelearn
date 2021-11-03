@@ -15,4 +15,3 @@ D:\Codelearn\OOP\obj\Debug\net5.0\ref\OOP.dll
 D:\Codelearn\OOP\obj\Debug\net5.0\OOP.pdb
 D:\Codelearn\OOP\obj\Debug\net5.0\OOP.genruntimeconfig.cache
 D:\Codelearn\OOP\bin\Debug\net5.0\AForge.Math.dll
-D:\Codelearn\OOP\obj\Debug\net5.0\OOP.csproj.CopyComplete

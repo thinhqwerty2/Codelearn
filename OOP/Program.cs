@@ -11,9 +11,12 @@ namespace OOP
   {
     public static void Main()
     {
-      BookList bl = new BookList();
-      bl.InputList();
-      bl.ShowList();
+      // BookList bl = new BookList();
+      // bl.InputList();
+      // bl.ShowList();
+      AccountList al = new AccountList();
+      al.NewAccount();
+
     }
   }
 }
