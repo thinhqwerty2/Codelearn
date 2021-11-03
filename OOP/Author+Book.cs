@@ -35,12 +35,12 @@ namespace OOP
       }
     }
   }
-  public class Book
+  public class Booka
   {
     string name;
     List<Author> authors;
     double price;
-    public Book(string name, List<Author> authors, double price)
+    public Booka(string name, List<Author> authors, double price)
     {
       this.name = name;
       this.price = price;
