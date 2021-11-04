@@ -1,6 +1,7 @@
 using System.Text;
 using System;
 using System.Collections.Generic;
+using System.IO;
 namespace OOP
 {
   class Account
@@ -97,19 +98,45 @@ namespace OOP
     List<Account> accounts = new List<Account>();
     public void NewAccount()
     {
-      Console.WriteLine("Amount of accounts: ");
-      int n = int.Parse(Console.ReadLine());
-      for (int i = 0; i < n; i++)
-      {
-        Account acc = new Account();
-        acc.FillInfo();
-        accounts.Add(acc);
-      }
+      Account acc = new Account();
+      acc.FillInfo();
+      accounts.Add(acc);
+
+    }
+    public void SaveFile()
+    {
+      Console.WriteLine("Input file name: ");
+      string path = Console.ReadLine() + ".txt";
+
       foreach (Account acc in accounts)
       {
-        acc.Querry();
+        string s = "--------------------------------------"
+        + $"\nID: {acc.AccountId}\nFirst Name: {acc.FirstName}\nLast Name: {acc.LastName}\nBalance: {acc.Balance}\n";
+
+
+        if (!File.Exists(path))
+          File.AppendAllText("listFile.txt", path + "\n");
+        File.AppendAllText(path, s);
+
+      }
+
+    }
+    public void LoadFile()
+    {
+      Console.WriteLine("Input file name: ");
+      string path = Console.ReadLine() + ".txt";
+      Console.WriteLine(File.ReadAllText(path));
+    }
+    public void Report()
+    {
+      string[] arrs = File.ReadAllLines("listFile.txt");
+      foreach (var item in arrs)
+      {
+        Console.WriteLine(item);
+        Console.WriteLine(File.ReadAllText(item));
       }
     }
+
 
   }
 }

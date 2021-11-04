@@ -1,0 +1,15 @@
+--------------------------------------
+ID: 3
+First Name: thinh
+Last Name: thon
+Balance: 200
+--------------------------------------
+ID: 3
+First Name: thinh
+Last Name: thon
+Balance: 200
+--------------------------------------
+ID: 3
+First Name: thinh
+Last Name: thon
+Balance: 200
