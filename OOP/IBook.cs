@@ -1,5 +1,7 @@
 using System.Collections;
 using System;
+using System.Collections.Generic;
+
 namespace OOP
 {
 
@@ -38,7 +40,7 @@ namespace OOP
     void Show();
 
   }
-  public class Book : IBook
+  public class Book : IBook, IComparable
   {
     string isbn;
     string title;
@@ -121,6 +123,7 @@ namespace OOP
         isbn = value;
       }
     }
+
     public void Show()
     {
       Console.WriteLine("----------------------------------");
@@ -159,34 +162,57 @@ namespace OOP
       } while (s.Length > 0);
 
     }
-    public static bool operator <(Book book1, Book book2)
-    {
-      if (book1.Title.CompareTo(book2.Title) < 0) return true;
-      else return false;
-    }
 
-    public static bool operator >(Book book1, Book book2)
+    public int CompareTo(object obj)
     {
-      if (book1.Title.CompareTo(book2.Title) > 0) return true;
-      else return false;
+      Book b = (Book)obj;
+      return (this.Title).CompareTo(b.Title);
     }
-    public int Compare(Book book1, Book book2)
+    public class SortByTitle : IComparer
     {
-      return 1;
+      public int Compare(object x, object y)
+      {
+        Book book1 = (Book)x;
+        Book book2 = (Book)y;
+        return book1.Title.CompareTo(book2.Title);
+      }
+    }
+    public class SortByAuthor : IComparer
+    {
+      public int Compare(object x, object y)
+      {
+        Book book1 = (Book)x;
+        Book book2 = (Book)y;
+        return book1.Author.CompareTo(book2.Author);
+      }
+    }
+    public class SortByYear : IComparer
+    {
+      public int Compare(object x, object y)
+      {
+        Book book1 = (Book)x;
+        Book book2 = (Book)y;
+        return book1.Year.CompareTo(book2.Year);
+      }
     }
   }
+
+
+
   public class BookList
   {
-    ArrayList list = new ArrayList();
+
+    ArrayList BookLists = new ArrayList();
+
     public void AddBook()
     {
       Book b = new Book();
       b.Input();
-      list.Add(b);
+      BookLists.Add(b);
     }
     public void ShowList()
     {
-      foreach (Book item in list)
+      foreach (Book item in BookLists)
       {
         item.Show();
       }
@@ -201,8 +227,36 @@ namespace OOP
         n--;
       }
     }
+    public void SortBy(Comparer comparer)
+    {
+      switch (comparer)
+      {
+        case Comparer.SortByAuthor:
+          BookLists.Sort(new Book.SortByAuthor());
+          break;
+        case Comparer.SortByTitle:
+          BookLists.Sort(new Book.SortByTitle());
+          break;
+        case Comparer.SortByYear:
+          BookLists.Sort(new Book.SortByYear());
+          break;
+        default:
+          Console.WriteLine("Comparer don't exist");
+          break;
+      }
 
+    }
+    public void SortBy()
+    {
+      BookLists.Sort();
+    }
 
+  }
+  public enum Comparer
+  {
+    SortByAuthor,
+    SortByTitle,
+    SortByYear,
 
   }
 }
