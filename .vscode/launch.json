@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "d:\\Codelearn\\CTDLvGT",
+      "cwd": "d:\\Codelearn\\OOP",
       "environment": [],
-      "program": "d:\\Codelearn\\CTDLvGT\\build\\Debug\\outDebug",
+      "program": "d:\\Codelearn\\OOP\\build\\Debug\\outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
@@ -21,22 +21,6 @@
           "ignoreFailures": true
         }
       ]
-    },
-    {
-      "name": ".NET Core Launch (console)",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/bin/Debug/net5.0/CTDLvGT.dll",
-      "args": [],
-      "cwd": "${workspaceFolder}",
-      "console": "integratedTerminal",
-      "stopAtEntry": false
-    },
-    {
-      "name": ".NET Core Attach",
-      "type": "coreclr",
-      "request": "attach"
     }
   ]
 }

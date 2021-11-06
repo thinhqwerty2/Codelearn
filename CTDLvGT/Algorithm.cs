@@ -1,5 +1,5 @@
 using System;
-namespace CTDLvGT
+namespace Algorithm
 {
   public class MaxSumSubArray
   {
