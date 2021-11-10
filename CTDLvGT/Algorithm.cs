@@ -1,7 +1,7 @@
 using System;
 namespace Algorithm
 {
-  public class MaxSumSubArray
+  public class ExMaxSumSubArray
   {
     static double sum = 0;
     static double maxsum = -99999999;
@@ -161,4 +161,18 @@ namespace Algorithm
 
     }
   }
+  public class Recursion
+  {
+    public class Factorial
+    {
+      public static int Start(int n)
+      {
+
+        if (n == 0 || n == 1) return 1;
+        else
+          return Start(n - 1) * n;
+      }
+    }
+  }
+
 }

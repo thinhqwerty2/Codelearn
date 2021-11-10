@@ -1,3 +1,6 @@
+
+
+
 using System.Collections.Generic;
 using System.Collections;
 using System;
@@ -247,29 +250,40 @@ namespace Data_Structure
   #region //Tree
   public class myBinaryTree
   {
+    public enum Order
+    {
+      preOrder, inOrder, postOrder
+    }
+    public enum Place
+    {
+      Left, Right,
+    }
     public class TreeNode
     {
       object data = new object();
-      TreeNode parent = new TreeNode();
-      TreeNode[] children = new TreeNode[2];
+      TreeNode childl;
+      TreeNode childr;
       public TreeNode()
       {
+        data = null;
+
       }
       public TreeNode(object Data)
       {
         data = Data;
       }
-      public TreeNode(object Data, TreeNode NodeL, TreeNode NodeR)
+      public TreeNode(object Data, TreeNode ChildL, TreeNode ChildR)
       {
         data = Data;
-        children[0] = NodeL;
-        children[1] = NodeR;
+        childl = ChildL;
+        childr = ChildR;
       }
-      public TreeNode(object Data, TreeNode Node)
+      public TreeNode(object Data, TreeNode Child, Place place)
       {
         data = Data;
-        children[0] = Node;
-        children[1] = null;
+        if (place == Place.Left) childl = Child;
+        else
+          childr = Child;
       }
       public object Data
       {
@@ -282,47 +296,157 @@ namespace Data_Structure
           data = value;
         }
       }
-      public TreeNode TreeNodeL
+      public TreeNode ChildL
       {
         set
         {
-          children[0] = value;
+          childl = value;
         }
         get
         {
-          return children[0];
+          return childl;
         }
       }
-      public TreeNode TreeNodeR
+      public TreeNode ChildR
       {
         set
         {
-          children[1] = value;
+          childr = value;
         }
         get
         {
-          return children[1];
+          return childr;
         }
       }
 
+      // public bool isParent(TreeNode Child)
+      // {
+      //   if (this == Child.Parent) return true;
+      //   else return false;
+      // }
+      public bool isChild(TreeNode Parent)
+      {
+        if (this == Parent.ChildL || this == Parent.ChildR) return true;
+        else return false;
+      }
+      public bool isChildL(TreeNode Parent)
+      {
+        if (this == Parent.ChildL) return true;
+        else return false;
+      }
+      public bool isChildR(TreeNode Parent)
+      {
+        if (this == Parent.ChildR) return true;
+        else return false;
+      }
+      public static int depthNode(TreeNode node)
+      {
+        if (node == null) return 0;
+        else return Math.Max(depthNode(node.ChildL), depthNode(node.ChildR)) + 1;
+      }
+      public static int Count(TreeNode node)
+      {
+        if (node == null) return 0;
+        else
+          return 1 + Count(node.ChildR) + Count(node.ChildL);
 
+      }
+      /// <summary>
+      /// Remove subtree from node
+      /// </summary>
+      /// <param name="node"></param>
+      public static void Empty(TreeNode node)
+      {
+        if (node == null) return;
+        Empty(node.ChildL);
+        Empty(node.ChildR);
+        node = null;
 
-
-
+      }
+      /// <summary>
+      /// Add node with parent
+      /// </summary>
+      /// <param name="node">Add this</param>
+      /// <param name="Parent">Parent of node</param>
+      /// <param name="Place">Left or Right</param>
+      public static void AddTreeNode(TreeNode node, TreeNode Parent, Place place)
+      {
+        if (place == Place.Left)
+        {
+          Parent.ChildL = node;
+        }
+        else
+        {
+          Parent.ChildR = node;
+        }
+      }
+      /// <summary>
+      /// Add node with Children
+      /// </summary>
+      /// <param name="node">Add this</param>
+      /// <param name="ChildL">Left child</param>
+      /// <param name="ChildR">Right child</param>
+      public static void AddTreeNode(TreeNode node, TreeNode ChildL, TreeNode ChildR)
+      {
+        node.ChildL = ChildL;
+        node.ChildR = ChildR;
+      }
+      public static void Traversal(TreeNode RootNode, Order order)
+      {
+        switch (order)
+        {
+          case Order.preOrder:
+            preOrder(RootNode);
+            break;
+          case Order.inOrder:
+            inOrder(RootNode);
+            break;
+          case Order.postOrder:
+            postOrder(RootNode);
+            break;
+        }
+      }
+      public static void inOrder(TreeNode Node)
+      {
+        if (Node.ChildL != null)
+        {
+          inOrder(Node.ChildL);
+        }
+        Console.Write(Node.Data + " ");
+        if (Node.ChildR != null)
+        {
+          inOrder(Node.ChildR);
+        }
+      }
+      public static void preOrder(TreeNode Node)
+      {
+        Console.Write(Node.Data + " ");
+        if (Node.ChildL != null)
+        {
+          preOrder(Node.ChildL);
+        }
+        if (Node.ChildR != null)
+        {
+          preOrder(Node.ChildR);
+        }
+      }
+      public static void postOrder(TreeNode Node)
+      {
+        if (Node.ChildL != null)
+        {
+          inOrder(Node.ChildL);
+        }
+        if (Node.ChildR != null)
+        {
+          inOrder(Node.ChildR);
+        }
+        Console.Write(Node.Data + " ");
+      }
     }
     public class Tree
     {
-      List<TreeNode> TreeNodes = new List<TreeNode>();
-      public void AddTreeNode(TreeNode treeNode)
-      {
-        TreeNodes.Add(treeNode);
-      }
-      public void inOrderTraversal()
-      {
 
-      }
     }
-
 
     #endregion
   }
