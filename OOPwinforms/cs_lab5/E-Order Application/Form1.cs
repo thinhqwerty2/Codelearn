@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
 namespace WindowsFormsApp1
 {
@@ -14,7 +13,7 @@ namespace WindowsFormsApp1
         }
 
         int number;
-        
+        double thanhtien = 0;
         double foodprice(string s)
         {
             switch (s)
@@ -58,13 +57,13 @@ namespace WindowsFormsApp1
             for (int i = 0; i < 10; i++)
             {
                 DataTable sloti = new DataTable();
-                
+
                 sloti.Columns.Add("FoodName", typeof(String));
                 sloti.Columns.Add("Quantity", typeof(Int32));
                 sloti.Columns.Add("Price", typeof(Double));
                 sloti.Columns.Add("Total", typeof(Double));
                 slot.Tables.Add(sloti);
-                comboBox1.Items.Add("slot" + (i+1));
+                comboBox1.Items.Add("slot" + (i));
             }
 
         }
@@ -94,6 +93,7 @@ namespace WindowsFormsApp1
                             dem++;
                             slot.Tables[number].Rows[i][1] = dem;
                         }
+                        //Tổng thành phần
                         slot.Tables[number].Rows[i]["Total"] = (int)slot.Tables[number].Rows[i]["Quantity"] * (double)slot.Tables[number].Rows[i]["Price"];
 
                     }
@@ -108,14 +108,10 @@ namespace WindowsFormsApp1
 
                     }
                 }
-            double thanhtien = 0;
-            foreach (DataRow item in slot.Tables[number].Rows)
-            {
-                thanhtien += (double)item["Total"];
-            }
-            label4.Text = thanhtien.ToString();
+            thanhTien();
+            
         }
-        
+
 
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,13 +122,55 @@ namespace WindowsFormsApp1
 
         private void button17_Click(object sender, EventArgs e)
         {
-            if (removeIndex == -1) return;
+
+            if (removeIndex == -1)
+            {
+                errorProvider1.SetError((Control)sender, "Chọn một hàng để xoá");
+                return;
+            }
             if (MessageBox.Show("Bạn thực sự muốn xoá dòng này?", "Cảnh báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 slot.Tables[number].Rows.RemoveAt(removeIndex);
                 removeIndex = -1;
             }
-            double thanhtien = 0;
+
+            thanhTien();
+            label4.Text = thanhtien.ToString();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Bạn thực sự muốn thoát", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
+                e.Cancel = true;
+        }
+
+        int removeIndex = -1;
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView a = (DataGridView)sender;
+            a.Rows[e.RowIndex].Selected = true;
+            if (e.RowIndex <= slot.Tables[number].Rows.Count - 1)
+            {
+                removeIndex = e.RowIndex;
+                errorProvider1.Clear();
+            }
+            else removeIndex = -1;
+
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+            slot.Tables[number].Rows[e.RowIndex]["Total"] = (int)slot.Tables[number].Rows[e.RowIndex]["Quantity"] * (double)slot.Tables[number].Rows[e.RowIndex]["Price"];
+            thanhTien();
+            
+
+            label4.Text = thanhtien.ToString();
+        }
+
+        private void thanhTien()
+        {
+            thanhtien = 0;
             foreach (DataRow item in slot.Tables[number].Rows)
             {
                 thanhtien += (double)item["Total"];
@@ -140,19 +178,9 @@ namespace WindowsFormsApp1
             label4.Text = thanhtien.ToString();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void iconButton1_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn thực sự muốn thoát", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.Cancel)
-                e.Cancel = true ;
-        }
-
-        int  removeIndex=-1;
-        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex <= slot.Tables[number].Rows.Count - 1)
-                removeIndex = e.RowIndex;
-            else removeIndex = -1;
-                                        
+            MessageBox.Show("Order thành công");
         }
     }
 

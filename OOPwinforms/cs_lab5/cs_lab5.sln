@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Order Application", "WindowsFormsApp1\E-Order Application.csproj", "{D2B65764-762D-4466-BB35-EC708D704D70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "E-Order Application", "E-Order Application\E-Order Application.csproj", "{D2B65764-762D-4466-BB35-EC708D704D70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "frmNhanvien", "frmNhanvien\frmNhanvien.csproj", "{C5709CA3-E253-4F4A-BF41-3FAE427CA64A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D2B65764-762D-4466-BB35-EC708D704D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2B65764-762D-4466-BB35-EC708D704D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2B65764-762D-4466-BB35-EC708D704D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5709CA3-E253-4F4A-BF41-3FAE427CA64A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5709CA3-E253-4F4A-BF41-3FAE427CA64A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5709CA3-E253-4F4A-BF41-3FAE427CA64A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5709CA3-E253-4F4A-BF41-3FAE427CA64A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

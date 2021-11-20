@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentalPaymentApp", "WindowsFormsApp1\DentalPaymentApp.csproj", "{4138E7BA-6EB4-45C4-A4F2-166163ACB636}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentalPaymentApp", "DentalPaymentApp\DentalPaymentApp.csproj", "{4138E7BA-6EB4-45C4-A4F2-166163ACB636}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThaoTacSo", "ThaoTacSo\ThaoTacSo.csproj", "{9B412FCB-B4F9-4623-9ADF-3EFFE418198C}"
 EndProject
