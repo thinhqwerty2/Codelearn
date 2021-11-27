@@ -11,7 +11,6 @@ namespace Algorithm
         private static void BruteForce(double[] arr)
         //Duyet toan bo cac day con va tinh tong cac day con do
         {
-
             for (int i = 0; i < arr.Length; i++)
             {
                 for (int j = i; j < arr.Length; j++)
@@ -19,7 +18,6 @@ namespace Algorithm
                     sum = 0;
                     for (int k = i; k < j; k++)
                     {
-
                         sum += arr[k];
                     }
                     if (sum > maxsum) { maxsum = sum; vtri[0] = i; vtri[1] = j; };
@@ -30,18 +28,15 @@ namespace Algorithm
         private static void BruteForce2(double[] arr)
         //Duyet toan bo nhung cai tien phep tinh tong
         {
-
             maxsum = arr[0];
             for (int i = 0; i < arr.Length; i++)
             {
                 sum = 0;
-
                 for (int j = i; j < arr.Length - 1; j++)
                 {
                     sum += arr[j];
                     if (sum > maxsum)
                     { maxsum = sum; vtri[0] = i; vtri[1] = j; }
-
                 }
             }
             Console.WriteLine($"MaxSumSubArray={maxsum}, vi tri tu {vtri[0] + 1} den {vtri[1] + 1}");
@@ -51,7 +46,6 @@ namespace Algorithm
         {
             MaxSub(arr, 0, arr.Length - 1);
             Console.WriteLine($"MaxSumSubArray={maxsum}, vi tri tu {vtri[0] + 1} den {vtri[1] + 1}");
-
         }
         private static double MaxSub(double[] arr, int start, int end)
         //Tong day con lon nhat tu vi tri start den vi tri end
@@ -63,7 +57,6 @@ namespace Algorithm
                 double wL = MaxSub(arr, start, m);
                 double wR = MaxSub(arr, m + 1, end);
                 double wM = MaxL(arr, start, m) + MaxR(arr, m + 1, end);//Tong day con lon nhat di qua diem giua
-
                 return maxsum = Math.Max(Math.Max(wL, wR), wM);
             }
         }
@@ -72,7 +65,6 @@ namespace Algorithm
         {
             double sumL = 0;
             double maxsumL = -9999999;
-
             for (int i = end; i > start; i--)
             {
                 sumL += arr[i];
@@ -89,7 +81,6 @@ namespace Algorithm
         {
             double sumR = 0;
             double maxsumR = -9999999;
-
             for (int i = start; i < end; i++)
             {
                 sumR += arr[i];
@@ -110,7 +101,6 @@ namespace Algorithm
         //ei la tong day con lon nhat cua day (2) 
         //ei=max(ai,e(i-1)+ai) i=2,...n
         //e1=LeftArr
-
         {
             double[] s = new double[arr.Length];
             double[] e = new double[arr.Length];
@@ -132,20 +122,16 @@ namespace Algorithm
                 if (s[i - 1] > e[i])
                 {
                     s[i] = s[i - 1];
-
                 }
                 else
                 {
                     s[i] = e[i];
                     vtri[1] = i;
                 }
-
             }
             maxsum = s[s.Length - 1];
             Console.WriteLine($"MaxSumSubArray={maxsum}, vi tri tu {vtri[0] + 1} den {vtri[1] + 1}");
-
         }
-
         public static void Test()
         {
             Console.WriteLine("Nhap so phan tu day ");
@@ -160,18 +146,16 @@ namespace Algorithm
             //MaxSumSubArray.BruteForce2(arr);
             //MaxSumSubArray.Recursion(arr);
             //MaxSumSubArray.DynamicProgramming(arr);
-
         }
     }
     #endregion
     #region Recursion
     public class Recursion
     {
-        public class Factorial
+        public class factorial
         {
             public static int Start(int n)
             {
-
                 if (n == 0 || n == 1) return 1;
                 else
                     return Start(n - 1) * n;
@@ -182,66 +166,166 @@ namespace Algorithm
     #region Sort
     public class Sort
     {
+        public static void swap(ref int a, ref int b)
+        {
+            int temp = a;
+            a = b;
+            b = temp;
+        }
+        public class SelectionSort
+        {
+            public static void Start(int[] arr)
+            {
+                selectionSort(arr);
+            }
+            private static void selectionSort(int[] arr)
+            {
+                for (int i = 0; i <= arr.Length - 2; i++)
+                {
+                    int minpos = i;
+                    for (int j = i + 1; j <= arr.Length - 1; j++)
+                    {
+                        if (arr[j] < arr[minpos])
+                        {
+                            minpos = j;
+                        }
+                    }
+                    swap(ref arr[i], ref arr[minpos]);
+                }
+            }
+        }
+        public class InsertionSort
+        {
+            public static void Start(int[] arr)
+            {
+                LinkedList<int> list = new LinkedList<int>();
+                list.AddFirst(arr[0]);
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    insertionSort(list, arr[i]);
+                }
+                list.CopyTo(arr, 0);
+            }
+            private static void insertionSort(LinkedList<int> arr, int value)
+            {
+                LinkedListNode<int> node = arr.Last;
+                LinkedListNode<int> knode = new LinkedListNode<int>(value);
+                for (int i = 0; i < arr.Count; i++)
+                {
+                    if (knode.Value > node.Value) { arr.AddAfter(node, knode); return; }
+                    else
+                        node = node.Previous;
+                }
+                arr.AddFirst(knode);
+            }
+        }
+        public class ShellSort
+        {
+            public static void Start()
+            {
+            }
+        }
         public class MergeSort
         {
             public static void Start(int[] arr)
             {
-                myMergeSort(arr, 0, arr.Length - 1);
+                mergeSort(arr, 0, arr.Length - 1);
             }
-            private static void myMergeSort(int[] arr, int left, int right)
+            private static void mergeSort(int[] arr, int left, int right)
             {
-                if (left < right)
+                if (right - left == 0) return;
                 {
                     int middle = (left + right) / 2;
-                    myMergeSort(arr, left, middle);
-                    myMergeSort(arr, middle + 1, right);
-                    Merge(arr, left, middle, right);
+                    mergeSort(arr, left, middle);
+                    mergeSort(arr, middle + 1, right);
+                    merge(arr, left, middle, right);
                 }
 
             }
-            public static void Merge(int[] arr, int left, int middle, int right)
+            private static void merge(int[] arr, int left, int middle, int right)
             {
-                List<int> rs = new List<int>();
-                List<int> LeftArr = new List<int>();
-                for (int i = left; i <= middle; i++)
+                if (right - left > 2)
                 {
-                    LeftArr.Add(arr[i]);
-                }
-                LeftArr.Add(99999999);
-                List<int> RightArr = new List<int>();
-                for (int i = middle + 1; i <= right; i++)
-                {
-                    RightArr.Add(arr[i]);
-                }
-                RightArr.Add(99999999);
-
-                int k = 0, j = 0;
-                while (!(k == LeftArr.Count - 1 && j == RightArr.Count - 1))
-                {
-
-                    if (LeftArr[k] < RightArr[j])
+                    List<int> rs = new List<int>();
+                    int ileft = left;//chi so chay ben trai
+                    int iright = middle;//chi so chay ben phai
+                    for (int i = left; i <= right; i++)
                     {
-                        rs.Add(LeftArr[k]);
-                        k++;
-                    }
-                    else
-                    {
-                        rs.Add(RightArr[j]);
-                        j++;
+
+                        if (ileft == middle + 1)
+                        {
+                            rs.Add(arr[iright]);
+                            iright++;
+                            continue;
+                        }
+                        if (iright == right + 1)
+                        {
+                            rs.Add(arr[left]);
+                            ileft++;
+                            continue;
+                        }
+                        if (arr[ileft] < arr[iright])
+                        {
+                            rs.Add(arr[ileft]); ileft++;
+                        }
+                        else
+                        {
+                            rs.Add(arr[iright]); iright++;
+                        }
+                        arr[i] = rs[rs.Count - 1];
                     }
                 }
-
-
+                else
+                {
+                    if (arr[left] > arr[right])
+                        swap(ref arr[left], ref arr[right]);
+                }
+            }
+        }
+        public class QuickSort
+        {
+            public static void Start(int[] arr)
+            {
+                quickSort(arr, 0, arr.Length - 1);
+            }
+            public static void quickSort(int[] arr, int left, int right)
+            {
+                int Pivot;
+                if (right - left < 9) InsertionSort.Start(arr);
+                else
+                {
+                    Pivot = Partition(arr, left, right);
+                    quickSort(arr, left, Pivot - 1);
+                    quickSort(arr, Pivot + 1, right);
+                }
+            }
+            private static int Partition(int[] arr, int left, int right)
+            {
+                int pivot = arr[left];//choose first element 
+                int i = left + 1; int j = right;
+                while (i <= j)
+                {
+                    while (arr[j] >= pivot)
+                    {
+                        if (j == left + 1) break;
+                        j--;
+                    }
+                    while (arr[i] <= pivot)
+                    {
+                        if (i == right) break;
+                        i++;
+                    }
+                    if (i <= j)
+                    {
+                        swap(ref arr[i], ref arr[j]);
+                        i++;
+                        j--;
+                    }
+                }
+                swap(ref arr[left], ref arr[j]);
+                return j;
             }
         }
     }
-    public class QuickSort
-    {
-        public static void Start(int[] arr)
-        {
-
-        }
-    }
-    #endregion
-
 }
+#endregion
