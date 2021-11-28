@@ -8,12 +8,12 @@ using System.Text;
 namespace Data_Structure
 {
     #region  //Stack and Queue
-    public class myStack
+    public class MyStack
     {
         /// <summary>
         /// Chuyen so nguyen ve Bit
         /// </summary>
-        public class BitConverter
+        public class bitConverter
         {
             public static void Start(int n)
             {
@@ -58,7 +58,7 @@ namespace Data_Structure
         }
     }
 
-    public class myQueue
+    public class MyQueue
     {
         /// <summary>
         /// Chuyen phan tu dau Queue ve cuoi Queue
@@ -164,9 +164,9 @@ namespace Data_Structure
     /// <summary>
     /// Su dung LinkedList
     /// </summary>
-    public class myLinkedList
+    public class MyLinkedList
     {
-        public class LinkedListExample
+        public class linkedListExample
         {
             public static void Start(int[] arr)
             {
@@ -184,7 +184,7 @@ namespace Data_Structure
         /// <summary>
         /// Nhập vào một số nguyên dương n, tiếp theo là n số nguyên của một dãy số, hãy cài đặt nó vào một danh sách liên kết đơn. Tiếp theo nhập hai số nguyên k và x, (0 ≤ k ≤ n), hãy chèn giá trị x vào danh sách liên kết tại chỉ số k và in ra màn hình danh sách đó, sau một phần tử có một khoảng trắng.
         /// </summary>
-        public class InsertLinkedList
+        public class insertLinkedList
         {
             public static void Start(LinkedList<int> arr, int k, int x)
             {
@@ -208,7 +208,7 @@ namespace Data_Structure
         /// <summary>
         /// Nhập vào một số nguyên dương n, tiếp theo là n số nguyên của một dãy số, hãy cài đặt nó vào một danh sách liên kết đơn. Tiếp theo nhập một số nguyên k (0 ≤ k < n).Hãy xóa những phần tử có giá trị lớn hơn giá trị của phần tử ở chỉ số k. In ra màn hình danh sách đó, sau một phần tử có đúng một khoảng trắng.
         /// </summary>
-        public class DeleteMultiValue
+        public class deleteMultiValue
         {
             public static void Start(LinkedList<int> arr, int k)
             {
@@ -248,7 +248,7 @@ namespace Data_Structure
     }
     #endregion
     #region //Tree
-    public class myBinaryTree
+    public class MyBinaryTree
     {
         public enum Order
         {
@@ -263,12 +263,14 @@ namespace Data_Structure
             object data = new object();
             TreeNode childl;
             TreeNode childr;
+
             public TreeNode()
             {
             }
             public TreeNode(object Data)
             {
                 data = Data;
+
             }
             public TreeNode(object Data, TreeNode ChildL, TreeNode ChildR)
             {
@@ -342,11 +344,14 @@ namespace Data_Structure
                 if (node == null) return 0;
                 else return Math.Max(depthNode(node.ChildL), depthNode(node.ChildR)) + 1;
             }
-            public static int Count(TreeNode node)
+            public int Count
             {
-                if (node == null) return 0;
-                else
-                    return 1 + Count(node.ChildR) + Count(node.ChildL);
+                get
+                {
+                    if (this == null) return 0;
+                    else
+                        return 1 + this.ChildR.Count + this.ChildL.Count;
+                }
 
             }
             /// <summary>
@@ -405,7 +410,7 @@ namespace Data_Structure
                         break;
                 }
             }
-            public static void inOrder(TreeNode Node)
+            private static void inOrder(TreeNode Node)
             {
                 if (Node.ChildL != null)
                 {
@@ -418,7 +423,7 @@ namespace Data_Structure
                     inOrder(Node.ChildR);
                 }
             }
-            public static void preOrder(TreeNode Node)
+            private static void preOrder(TreeNode Node)
             {
                 if (Node != null)
                     Console.Write(Node.Data + " ");
@@ -431,25 +436,46 @@ namespace Data_Structure
                     preOrder(Node.ChildR);
                 }
             }
-            public static void postOrder(TreeNode Node)
+            private static void postOrder(TreeNode Node)
             {
                 if (Node.ChildL != null)
                 {
-                    inOrder(Node.ChildL);
+                    postOrder(Node.ChildL);
                 }
                 if (Node.ChildR != null)
                 {
-                    inOrder(Node.ChildR);
+                    postOrder(Node.ChildR);
                 }
                 if (Node != null)
                     Console.Write(Node.Data + " ");
             }
-        }
-        public class Tree
-        {
 
+            /// <summary>
+            /// Convert arr to Complete Tree
+            /// </summary>
+            /// <param name="arr"></param>
+            /// <param name="root"></param>
+            /// <param name="i"></param>
+            /// <returns>RootNode </returns>
+            public static TreeNode toCompleTree(int[] arr, TreeNode root, int i)
+            {
+                if (i < arr.Length)
+                {
+                    TreeNode temp = new TreeNode(arr[i]);
+                    root = temp;
+                    root.ChildL = toCompleTree(arr, root.ChildL, 2 * i + 1);
+                    root.ChildR = toCompleTree(arr, root.ChildR, 2 * i + 2);
+
+                }
+                return root;
+
+            }
+
+
+
+            #endregion
         }
 
-        #endregion
     }
+
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Data_Structure;
 namespace Algorithm
 {
     #region Example
@@ -233,54 +234,45 @@ namespace Algorithm
             }
             private static void mergeSort(int[] arr, int left, int right)
             {
-                if (right - left == 0) return;
-                {
-                    int middle = (left + right) / 2;
-                    mergeSort(arr, left, middle);
-                    mergeSort(arr, middle + 1, right);
-                    merge(arr, left, middle, right);
-                }
-
+                if (left == right) return;
+                mergeSort(arr, left, (left + right) / 2);
+                mergeSort(arr, (left + right) / 2 + 1, right);
+                merge(arr, left, (left + right) / 2, right);
             }
             private static void merge(int[] arr, int left, int middle, int right)
             {
-                if (right - left > 2)
-                {
-                    List<int> rs = new List<int>();
-                    int ileft = left;//chi so chay ben trai
-                    int iright = middle;//chi so chay ben phai
-                    for (int i = left; i <= right; i++)
-                    {
+                List<int> rs = new List<int>();
+                int ileft = left;
+                int iright = middle + 1;
 
-                        if (ileft == middle + 1)
-                        {
-                            rs.Add(arr[iright]);
-                            iright++;
-                            continue;
-                        }
-                        if (iright == right + 1)
-                        {
-                            rs.Add(arr[left]);
-                            ileft++;
-                            continue;
-                        }
-                        if (arr[ileft] < arr[iright])
-                        {
-                            rs.Add(arr[ileft]); ileft++;
-                        }
-                        else
-                        {
-                            rs.Add(arr[iright]); iright++;
-                        }
-                        arr[i] = rs[rs.Count - 1];
-                    }
-                }
-                else
+                for (int i = left; i <= right; i++)
                 {
-                    if (arr[left] > arr[right])
-                        swap(ref arr[left], ref arr[right]);
+
+                    if (ileft == middle + 1)
+                    {
+                        rs.Add(arr[iright]);
+                        iright++;
+                        continue;
+                    }
+                    if (iright == right + 1)
+                    {
+                        rs.Add(arr[ileft]);
+                        ileft++;
+                        continue;
+                    }
+                    if (arr[ileft] < arr[iright])
+                    {
+                        rs.Add(arr[ileft]); ileft++;
+                    }
+                    else
+                    {
+                        rs.Add(arr[iright]); iright++;
+                    }
+
                 }
+                rs.CopyTo(arr, left);
             }
+
         }
         public class QuickSort
         {
@@ -325,6 +317,55 @@ namespace Algorithm
                 swap(ref arr[left], ref arr[j]);
                 return j;
             }
+        }
+        public class HeapSort
+        {
+            public static void Start(int[] arr)
+            {
+                heapSort(arr);
+            }
+            private static void heapSort(int[] arr)
+            {
+                for (int i = arr.Length / 2 - 1; i >= 0; i--)
+                {
+                    maxHeap(arr, arr.Length, i);
+                }
+                for (int i = arr.Length - 1; i > 0; i--)
+                {
+                    swap(ref arr[0], ref arr[i]);
+                    maxHeap(arr, i, 0);
+                }
+
+            }
+
+            /// <summary>
+            /// Heapify
+            /// </summary>
+            /// <param name="arr"></param>
+            /// <param name="n">heapsize</param>
+            /// <param name="i">index in arr</param>
+            private static void maxHeap(int[] arr, int n, int i)
+            {
+                int largest = i;
+                int l = 2 * i + 1;
+                int r = 2 * i + 2;
+
+                if (l < n && arr[largest] < arr[l])
+                    largest = l;
+                if (r < n && arr[largest] < arr[r])
+                    largest = r;
+                if (largest != i)
+                {
+                    swap(ref arr[largest], ref arr[i]);
+                    //Heapify sub heap
+                    maxHeap(arr, n, largest);
+                }
+            }
+
+        }
+        public class RadixSort
+        {
+
         }
     }
 }
