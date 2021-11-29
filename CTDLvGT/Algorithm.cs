@@ -363,9 +363,120 @@ namespace Algorithm
             }
 
         }
+        public class CountingSort
+        {
+            /// <summary>
+            /// Sort int arr with value in [0,M]
+            /// </summary>
+            public static void Start(int[] arr)
+            {
+                int max = arr[0];
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    max = Math.Max(max, arr[i]);
+                }
+                countingSort(arr, max);
+
+            }
+            private static void countingSort(int[] arr, int max)
+            {
+
+                int[] c = new int[max + 1]; //Dem cac gia tri i
+                int[] rs = new int[arr.Length];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    c[arr[i]]++;
+                }
+                //Tinh vi tri cua phan tu value
+                for (int value = 1; value <= max; value++)
+                {
+                    c[value] = c[value] + c[value - 1];
+                }
+                for (int i = arr.Length - 1; i >= 0; i--)
+                {
+                    rs[c[arr[i]] - 1] = arr[i];
+                    c[arr[i]] = c[arr[i]] - 1;
+                }
+                rs.CopyTo(arr, 0);
+
+            }
+        }
         public class RadixSort
         {
+            public enum TypeSort
+            {
+                RadixExchangeSort,
+                StraightRadixSort,
+            }
+            /// <summary>
+            /// Sort integer number
+            /// </summary>
+            /// <param name="arr"></param>
+            /// <param name="typeSort"></param>
+            public static void Start(int[] arr, TypeSort typeSort)
+            {
+                if (typeSort == TypeSort.RadixExchangeSort)
+                    radixExchangeSort(arr);
+                else
+                {
+                    straightRadixSort(arr);
+                }
+            }
+            public static void Start(int[] arr)
+            {
+                straightRadixSort(arr);
+            }
+            public static void radixExchangeSort(int[] arr)
+            {
 
+            }
+            public static void straightRadixSort(int[] arr)
+            {
+                string[] s = new string[arr.Length];
+                List<string>[] bucket = new List<string>[10];
+                //Khoi tao bucket
+                for (int i = 0; i < bucket.Length; i++)
+                {
+                    bucket[i] = new List<string>();
+                }
+                int max = 0;
+                //Chuyen arr sang mang string
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    s[i] = arr[i].ToString();
+                    max = Math.Max(arr[i], max);
+                }
+                int n = max.ToString().Length;
+                for (int i = 1; i <= n; i++)
+                {
+                    foreach (var item in s)
+                    {
+                        if (item.Length - i < 0) bucket[0].Add(item);
+                        else
+                            //Dua vao bucket
+                            bucket[item[item.Length - i] - 48].Add(item);
+                    }
+                    int index = 0;
+                    for (int j = 0; j < 10; j++)
+                    {
+
+                        if (bucket[j].Count == 0) continue;
+                        else
+                            foreach (var value in bucket[j])
+                            {
+                                s[index] = value;
+                                index++;
+                            }
+                        bucket[j].Clear();
+                    }
+                }
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = int.Parse(s[i]);
+                }
+
+
+            }
         }
     }
 }

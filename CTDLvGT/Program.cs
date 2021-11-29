@@ -31,15 +31,15 @@ namespace CTDLvGT
             int[] arr = new int[10];
             for (int i = 0; i <= arr.Length - 1; i++)
             {
-                arr[i] = random.Next(1, 10);
+                arr[i] = random.Next(1, 100);
             }
 
             foreach (var item in arr)
             {
                 Console.Write(item + " ");
             }
-            HeapSort.Start(arr);
             Console.WriteLine();
+            RadixSort.Start(arr);
             foreach (var item in arr)
             {
                 Console.Write(item + " ");
