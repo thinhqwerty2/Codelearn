@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+        
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
@@ -25,8 +26,9 @@ namespace WindowsFormsApp1
         {
             if (textBox2.TextLength == 0)
                 MessageBox.Show("Chưa nhập tên khách hàng!", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Warning);
-            GetPay();
+
         }
+
         private void GetPay()
         {
             decimal Total = 0;
@@ -38,5 +40,9 @@ namespace WindowsFormsApp1
             
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            GetPay();
+        }
     }
 }

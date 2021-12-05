@@ -9,18 +9,38 @@ namespace CTDLvGT
     {
         public static void Main()
         {
-            testAlgorithm();
+
+            //testAlgorithm();
             //testDataStructure();
 
 
 
         }
+
         public static void testDataStructure()
         {
             int[] a = new int[] { 3, 5, 2, 4, 6, 23, 5, 7, 5 };
-            TreeNode root = new TreeNode();
-            root = TreeNode.toCompleTree(a, root, 0);
-            TreeNode.Traversal(root, Order.preOrder);
+            TreeNode A = new TreeNode("A");
+            TreeNode B = new TreeNode("B");
+            TreeNode C = new TreeNode("C");
+            TreeNode D = new TreeNode("D");
+            TreeNode E = new TreeNode("E");
+            TreeNode F = new TreeNode("F");
+            TreeNode G = new TreeNode("G");
+            TreeNode H = new TreeNode("H");
+            TreeNode I = new TreeNode("I");
+            TreeNode J = new TreeNode("J");
+            A.ChildL = B; A.ChildR = C;
+            B.ChildL = D; B.ChildR = E;
+            E.ChildL = H;
+            C.ChildL = F; C.ChildR = G;
+            F.ChildR = I;
+            G.ChildR = J;
+            TreeNode.Traversal(A, Order.preOrder);
+            Console.WriteLine();
+            TreeNode.Traversal(A, Order.inOrder);
+
+
 
 
 
