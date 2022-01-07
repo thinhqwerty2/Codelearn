@@ -475,7 +475,82 @@ namespace Data_Structure
 
             #endregion
         }
+        public class BSTNode
+        {
+            public int Key { get; }
+            public BSTNode ChildL { set; get; }
+            public BSTNode ChildR { set; get; }
+            public Object Data;
+            public BSTNode(int key)
+            {
+                this.Key = key;
+                this.ChildL = null;
+                this.ChildR = null;
+            }
+            public BSTNode(int key, Object data)
+            {
+                this.Key = key;
+                this.ChildL = null;
+                this.ChildR = null;
+                this.Data = data;
+            }
+            public void setData(Object data)
+            {
+                this.Data = data;
+            }
+            public BSTNode searchNode(int key)
+            {
+                if (this != null)
+                {
+                    if (key == this.Key) return this;
+                    if (key < this.Key)
+                    {
+                        return this.ChildL.searchNode(key);
+                    }
+                    else
+                    {
+                        return this.ChildR.searchNode(key);
+                    }
+                }
+                return null;
+            }
+            public void insertNode(int key)
+            {
+                BSTNode newNode = new BSTNode(key);
+                if (key == this.Key) throw new Exception("Key existed");
+                if (key < this.Key)
+                {
+                    if (this.ChildL == null)
+                    {
+                        this.ChildL = newNode;
+                    }
+                    else
+                        this.ChildL.insertNode(key);
+                }
+                else
+                {
+                    if (this.ChildR == null)
+                    {
+                        this.ChildR = newNode;
+                    }
+                    else
+                        this.ChildR.insertNode(key);
+                }
+            }
+            public void inOrder()
+            {
+                if (this.ChildL != null)
+                {
+                    this.ChildL.inOrder();
+                }
+                if (this != null)
+                    Console.Write(this.Key + " ");
+                if (this.ChildR != null)
+                {
+                    this.ChildR.inOrder();
+                }
+            }
 
+        }
     }
-
 }

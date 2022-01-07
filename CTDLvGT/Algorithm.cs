@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Data_Structure;
 namespace Algorithm
 {
-    #region Example
+    #region  Example
     public class ExMaxSumSubArray
     {
         static double sum = 0;
@@ -283,13 +283,28 @@ namespace Algorithm
             public static void quickSort(int[] arr, int left, int right)
             {
                 int Pivot;
-                if (right - left < 9) InsertionSort.Start(arr);
+                if (right - left < 1) return;
+                if (right - left == 1)
+                {
+                    int temp = Math.Max(arr[right], arr[left]);
+                    arr[left] = Math.Min(arr[right], arr[left]);
+                    arr[right] = temp;
+                }
+
                 else
                 {
                     Pivot = Partition(arr, left, right);
                     quickSort(arr, left, Pivot - 1);
                     quickSort(arr, Pivot + 1, right);
+
+
                 }
+                foreach (var item in arr)
+                {
+                    Console.Write(item + " ");
+
+                }
+                Console.WriteLine();
             }
             private static int Partition(int[] arr, int left, int right)
             {
@@ -479,5 +494,76 @@ namespace Algorithm
             }
         }
     }
+
+    #endregion
+    #region Search
+
+    public class LinearSearch
+    {
+        public static void Start(int[] arr, int x)
+        {
+            int vtri = linearSearch(arr, x);
+            if (vtri != -1) Console.WriteLine($"Tim thay {x} tai vi tri {vtri}");
+            else Console.WriteLine($"Khong tim thay {x}");
+        }
+        private static int linearSearch(int[] arr, int x)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (x == arr[i]) return i;
+
+            }
+            return -1;
+        }
+
+    }
+    public class BinarySearch
+    {
+        public static void Start(int[] arr, int x)
+        {
+            int vitri = binarySearch(arr, x, 0, arr.Length - 1);
+            Console.WriteLine($"Vi tri la {vitri + 1 }");
+        }
+        private static int binarySearch(int[] arr, int x, int left, int right)
+        {
+            while (left < right)
+            {
+                // if (right - left == 1)
+                // {
+                //     return -1;
+                // }
+                int mid = (left + right) / 2;
+                if (arr[right] == x) return right;
+                if (arr[left] == x) return left;
+                if (x == arr[mid]) return mid;
+                else
+                {
+                    if (x < arr[mid])
+                    {
+                        right = mid - 1;
+                    }
+                    else
+                    {
+                        left = mid + 1;
+                    }
+                }
+            }
+            return -1;
+        }
+    }
+
+    #endregion
+    #region Dynamic programing
+    public class DynamicPrograming
+    {
+        //Cho so tu nhien n<=100. Co bao nhieu cach phan tich so n thanh tong cua
+        //day cac so nguyen duong, cac cach phan tich la hoan vi cua nhau chi tinh la 1
+        //so 0 cung co 1 cach phan tich
+        public class Example
+        {
+
+        }
+    }
+    #endregion
 }
-#endregion
+

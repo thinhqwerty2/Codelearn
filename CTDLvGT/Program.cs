@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using static Data_Structure.MyBinaryTree;
-using static Algorithm.Sort;
 namespace CTDLvGT
 {
     class Program
@@ -10,8 +9,8 @@ namespace CTDLvGT
         public static void Main()
         {
 
-            //testAlgorithm();
-            //testDataStructure();
+            // testAlgorithm();
+            testDataStructure();
 
 
 
@@ -19,26 +18,18 @@ namespace CTDLvGT
 
         public static void testDataStructure()
         {
-            int[] a = new int[] { 3, 5, 2, 4, 6, 23, 5, 7, 5 };
-            TreeNode A = new TreeNode("A");
-            TreeNode B = new TreeNode("B");
-            TreeNode C = new TreeNode("C");
-            TreeNode D = new TreeNode("D");
-            TreeNode E = new TreeNode("E");
-            TreeNode F = new TreeNode("F");
-            TreeNode G = new TreeNode("G");
-            TreeNode H = new TreeNode("H");
-            TreeNode I = new TreeNode("I");
-            TreeNode J = new TreeNode("J");
-            A.ChildL = B; A.ChildR = C;
-            B.ChildL = D; B.ChildR = E;
-            E.ChildL = H;
-            C.ChildL = F; C.ChildR = G;
-            F.ChildR = I;
-            G.ChildR = J;
-            TreeNode.Traversal(A, Order.preOrder);
+            BSTNode A = new BSTNode(6);
+            A.insertNode(4);
+            A.insertNode(2);
+            A.insertNode(5);
+            A.insertNode(7);
+            A.insertNode(1);
+            A.insertNode(8);
+            A.searchNode(5).setData("Test");
+
             Console.WriteLine();
-            TreeNode.Traversal(A, Order.inOrder);
+            A.inOrder();
+            Console.WriteLine(A.searchNode(5).Data);
 
 
 
@@ -48,10 +39,10 @@ namespace CTDLvGT
         public static void testAlgorithm()
         {
             Random random = new Random();
-            int[] arr = new int[10];
-            for (int i = 0; i <= arr.Length - 1; i++)
+            int[] arr = new int[100];
+            for (int i = 0; i < arr.Length; i++)
             {
-                arr[i] = random.Next(1, 100);
+                arr[i] = i + 10;
             }
 
             foreach (var item in arr)
@@ -59,11 +50,14 @@ namespace CTDLvGT
                 Console.Write(item + " ");
             }
             Console.WriteLine();
-            RadixSort.Start(arr);
-            foreach (var item in arr)
+            //Algorithm.BinarySearch.Start(arr, 21);
+
+            for (int i = 0; i < arr.Length; i++)
             {
-                Console.Write(item + " ");
+                Algorithm.BinarySearch.Start(arr, i);
+
             }
+
 
         }
 
